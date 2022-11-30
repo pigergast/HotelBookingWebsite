@@ -14,26 +14,26 @@
     <link rel="stylesheet" href="style.css" />
   </head>
 
-  <body>
+  <body style="background-color: #f6d7b0; background-image: var(--bs-gradient);">
     <header>
       <!-- place navbar here -->
       <nav class="navbar navbar-expand navbar-light bg-primary">
         <a class="navbar-brand text-white mx-4"
           >The Princess of Arena Cam Ranh</a
         >
-        <ul class="nav navbar-nav ms-5">
-          <li class="nav-item">
+        <ul class="nav navbar-nav ms-2">
+          <li class="nav-item nav-item border ms-1 roun">
             <a
               class="nav-link text-white"
               style="background-color: darkblue"
               href="#"
-              >Home</a
+              >Room Listing</a
             >
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="#">Bookings</a>
+          <li class="nav-item border ms-1">
+            <a class="nav-link text-white" href="Bookings.html">View Bookings</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item border ms-1">
             <a class="nav-link text-white" href="Admin.html">Admin</a>
           </li>
         </ul>
@@ -45,7 +45,7 @@
           <div class="col shadow p-3 mb-5 bg-body rounded">
             <h1 class="display-1">
               Welcome to
-              <span class="text-primary"> <strong>Arena Cam Ranh</strong></span>
+              <span class="text-primary"> <strong>Princess of Arena Cam Ranh Home</strong></span>
             </h1>
           </div>
           <div class="col shadow p-3 mb-5 bg-body rounded ms-2">
@@ -96,12 +96,6 @@
             <input class="form-control" id="guestName" />
           </div>
           <div class="mb-3">
-            <label for="" class="form-label"
-              > Total amount of guests</label
-            >
-            <input class="form-control" type="number" id="guestNum" />
-          </div>
-          <div class="mb-3">
             <label for="roomRate" class="form-label"
               >Your email</label
             >
@@ -122,22 +116,26 @@
            <input type="date" class="form-control" name="" id="checkoutDate">
           </div>
           <div class="mb-3">
-            <h1 class="display-6" id="roomBooked">Room:</h1>
-            <h1 class="display-6" id="totalPrice">Total price:</h1>
+            <h1 class="display-6" >Room: <span id="roomBooked"></span></h1>
+            <h1 class="display-6" >Total price: <span id="totalPrice"></span> <span>USD</span></h1>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="bookBtn" data-bs-dismiss="modal">Make Booking</button>
+        <button type="button" class="btn btn-primary" onclick="bookRoom()" id="bookBtn" data-bs-dismiss="modal">Make Booking</button>
       </div>
     </div>
   </div>
 </div>
 
-    <footer>
-      <!-- place footer here -->
-    </footer>
+
+  <footer class="d-flex  flex-wrap justify-content-between align-items-center py-3 border-top bg-white">
+    <div class="col-md-4 d-inline align-items-center">
+      <span class="ms-2 mb-3 mb-md-0 text-muted">CÔNG TY CỔ PHẦN TRẦN THÁI CAM RANH | 02583968888 | rsvn.ams@arenams.vn</span>
+    </div>
+
+  </footer>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="/bootstrap-5.2.3-dist/js/bootstrap.bundle.js"></script>
     <script src="index.js"></script>

@@ -14,107 +14,222 @@
     <link rel="stylesheet" href="style.css" />
   </head>
 
-  <body>
+  <body style="background-color: #f6d7b0">
     <header>
       <!-- place navbar here -->
       <nav class="navbar navbar-expand navbar-light bg-primary">
-        <a class="navbar-brand text-white mx-4">The Princess of Arena Cam Ranh</a>
-        <ul class="nav navbar-nav ms-5">
-          <li class="nav-item">
+        <a class="navbar-brand text-white mx-4"
+          >The Princess of Arena Cam Ranh</a
+        >
+        <ul class="nav navbar-nav ms-2">
+          <li class="nav-item border ms-1">
+            <a class="nav-link text-white" href="Rooms.html">Room Listing</a>
+          </li>
+          <li class="nav-item border ms-1">
+            <a class="nav-link text-white" href="Bookings.html">View Bookings</a>
+          </li>
+          <li class="nav-item border ms-1">
             <a
               class="nav-link text-white"
-              href="Rooms.html"
-              >Room Listing</a
+              style="background-color: darkblue"
+              href="#"
+              >Admin</a
             >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="#">Bookings</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" style="background-color: darkblue" href="#">Admin</a>
           </li>
         </ul>
       </nav>
     </header>
     <main>
       <div class="container">
-        
         <div class="row mt-2 justify-content-center align-items-center g-2">
           <div class="col shadow p-3 mb-5 bg-body rounded">
-            <h1>Create a room</h1>
+            <h1 class="display-3 mb-3">Create a room</h1>
             <form>
               <div class="mb-3">
-                <label for="roomName" class="form-label"
-                  >Room name</label
-                >
+                <label for="roomName" class="form-label">Room name</label>
                 <input class="form-control" id="roomName" />
               </div>
               <div class="mb-3">
-                <label for="" class="form-label"
-                  >Room Size</label
-                >
+                <label for="" class="form-label">Room Size</label>
                 <input class="form-control" type="number" id="roomSize" />
               </div>
               <div class="mb-3">
-                <label for="roomRate" class="form-label"
-                  >Standard Rate</label
-                >
-                <input class="form-control"  type="number" id="roomRate" />
+                <label for="roomRate" class="form-label">Standard Rate</label>
+                <input class="form-control" type="number" id="roomRate" />
               </div>
               <div class="mb-3">
                 <label for="roomNum" class="form-label"
                   >Number of rooms available</label
                 >
-                <input class="form-control"  type="number" id="roomNum" />
+                <input class="form-control" type="number" id="roomNum" />
               </div>
               <div class="mb-3">
-                <label for="" class="form-label"
-                  >Utilities:</label>
-                <div class="btn-group mx-2" role="group" >
-                    <input type="checkbox" class="btn-check" id="AC" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="AC">AC</label>
-                  
-                    <input type="checkbox" class="btn-check" id="Terrace" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="Terrace">Terrace</label>
-                  
-                    <input type="checkbox" class="btn-check" id="Pool" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="Pool">Pool</label>
+                <label for="" class="form-label">Utilities:</label>
+                <div class="btn-group mx-2" role="group">
+                  <input
+                    type="checkbox"
+                    class="btn-check"
+                    id="AC"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-primary" for="AC">AC</label>
 
-                    <input type="checkbox" class="btn-check" id="Gym" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="Gym">Gym</label>
+                  <input
+                    type="checkbox"
+                    class="btn-check"
+                    id="Terrace"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-primary" for="Terrace"
+                    >Terrace</label
+                  >
 
-                    <input type="checkbox" class="btn-check" id="Restaurant" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="Restaurant">Restaurant</label>
+                  <input
+                    type="checkbox"
+                    class="btn-check"
+                    id="Pool"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-primary" for="Pool">Pool</label>
 
-                    <input type="checkbox" class="btn-check" id="Beach" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="Beach">Beach</label>
-                  </div>
+                  <input
+                    type="checkbox"
+                    class="btn-check"
+                    id="Gym"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-primary" for="Gym">Gym</label>
+
+                  <input
+                    type="checkbox"
+                    class="btn-check"
+                    id="Restaurant"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-primary" for="Restaurant"
+                    >Restaurant</label
+                  >
+
+                  <input
+                    type="checkbox"
+                    class="btn-check"
+                    id="Beach"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-primary" for="Beach"
+                    >Beach</label
+                  >
+                </div>
               </div>
-              <button type="button" onclick="createRoom()" id="submitBtn" class="btn btn-primary">
+              <button
+                type="button"
+                onclick="createRoom()"
+                id="submitBtn"
+                class="btn btn-primary"
+              >
                 Create
               </button>
             </form>
           </div>
         </div>
-      </div>
-      
-    </main>
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header">
-            <img src="..." class="rounded me-2" alt="...">
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-          </div>
-          <div class="toast-body">
-            Success! Room created.
+
+        <div class="row mt-2 justify-content-center align-items-center g-2">
+          <div class="col shadow p-3 mb-5 bg-body rounded">
+            <h1 class="display-3 mb-3">Set rate plan</h1>
+            <ul id="roomRateList" class="list-group">
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                <img
+                  class="img-fluid rounded-top"
+                  style="width: 150px"
+                  src="https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/397679942.jpg?k=7b3f5dd6c2f195e3129f361ecb989adf25331fe20ec52954beb2b0c83cf01b89&amp;o=&amp;hp=1"
+                  alt=""
+                />
+                <h5>
+                  Deluxe
+                </h5>
+                <h5>Size: 30 meters</h5>
+                <h5>Standard Rate: 100 USD</h5>
+                <h5>
+                  Rooms:<span class="badge ms-1 bg-info badge-pill">1</span>
+                </h5>
+                <button
+                  type="button"
+                  id="btn1"
+                  class="btn btn-primary btn-lg"
+                  data-bs-toggle="modal"
+                  data-bs-target="#rateModal"
+                >
+                  <h5>Set</h5>
+                </button>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-      
-    <footer>
-      <!-- place footer here -->
-    </footer>
-    
+    </main>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="liveToast"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header">
+          <img src="..." class="rounded me-2" alt="..." />
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body">Success! Room created.</div>
+      </div>
+    </div>
+<!-- Modal -->
+<div class="modal fade" id="rateModal" tabindex="-1" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Set a rate plan</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="roomNum" class="form-label"
+              >Rate:</label
+            >
+            <input class="form-control"  type="number" id="ratePrice" />
+          </div>
+          <div class="mb-3">
+            <label for="checkinDate" class="form-label">Rate plan starts at</label>
+           <input type="date" class="form-control" name="" id="checkinRate">
+          </div>
+          <div class="mb-3">
+            <label for="checkinDate" class="form-label">Rate plan ends at</label>
+           <input type="date" class="form-control" name="" id="checkoutRate">
+          </div>
+          <div class="mb-3"> <h1 class="display-6" >Room: <span id="roomRated"></span></h1></div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="bookRoom()" id="bookBtn" data-bs-dismiss="modal">Make Booking</button>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="d-flex  flex-wrap justify-content-between align-items-center py-3 border-top bg-white">
+  <div class="col-md-4 d-inline align-items-center">
+    <span class="ms-2 mb-3 mb-md-0 text-muted">CÔNG TY CỔ PHẦN TRẦN THÁI CAM RANH | 02583968888 | rsvn.ams@arenams.vn</span>
+  </div>
+
+</footer>
+
     <!-- Bootstrap JavaScript Libraries -->
     <script src="/bootstrap-5.2.3-dist/js/bootstrap.bundle.js"></script>
     <script src="index.js"></script>
