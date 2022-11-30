@@ -18,18 +18,23 @@
     <header>
       <!-- place navbar here -->
       <nav class="navbar navbar-expand navbar-light bg-primary">
-        <a class="navbar-brand text-white">The Princess of Arena Cam Ranh</a>
-        <ul class="nav navbar-nav">
+        <a class="navbar-brand text-white mx-4"
+          >The Princess of Arena Cam Ranh</a
+        >
+        <ul class="nav navbar-nav ms-5">
           <li class="nav-item">
             <a
               class="nav-link text-white"
               style="background-color: darkblue"
               href="#"
-              >Room Listing</a
+              >Home</a
             >
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="#">Bookings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="Admin.html">Admin</a>
           </li>
         </ul>
       </nav>
@@ -38,58 +43,98 @@
       <div class="container">
         <div class="row mt-2 justify-content-center align-items-center g-2">
           <div class="col shadow p-3 mb-5 bg-body rounded">
-            <h1 class="display-3">Room List:</h1>
-            <ul id="roomList" class="list-group">
-              <li
-                class="list-group-item d-flex justify-content-between align-items-center"
-              >
-                <img
-                  class="img-thumbnail"
-                  style="width: 300px"
-                  src="https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/397679942.jpg?k=7b3f5dd6c2f195e3129f361ecb989adf25331fe20ec52954beb2b0c83cf01b89&o=&hp=1"
-                  alt=""
-                />
-                <h5>Single room<div class="mt-2">
-                  <span class="badge bg-primary badge-pill">AC</span>
-                  <span class="badge bg-primary badge-pill">Beach</span>
-                </div></h5>
-                <h5>Size: 45 meters</h5>
-                <h5>Rate: 100 USD</h5>
-                <h5>
-                  Amount:<span class="badge ms-1 bg-primary badge-pill">2</span>
-                </h5>
-                
-                <button type="button" class="btn btn-primary btn-lg">
-                  <h5>Reserve</h5>
-                </button>
-              </li>
-            </ul>
+            <h1 class="display-1">
+              Welcome to
+              <span class="text-primary"> <strong>Arena Cam Ranh</strong></span>
+            </h1>
+          </div>
+          <div class="col shadow p-3 mb-5 bg-body rounded ms-2">
+            <img
+              src="https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/395735069.jpg?k=79b8f3f9431fa410acf3a6337445aa8db9b026efc5e06dfe6fbf2fa375e6bd72&o=&hp=1"
+              class="img-fluid rounded-top"
+              alt=""
+            />
           </div>
         </div>
-        <div class="row justify-content-center align-items-center g-2">
+        <div class="row mt-2 justify-content-center align-items-center g-2">
           <div class="col shadow p-3 mb-5 bg-body rounded">
-            <h1>Create a room</h1>
-            <form>
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label"
-                  >Room name</label
-                >
-                <input class="form-control" id="roomName" />
-              </div>
-              <label for="form-select" class="form-label">Room Type</label>
-              <select class="form-select mb-3" id="roomType">
-                <option value="Single">Single</option>
-                <option value="Couple">Couple</option>
-                <option value="Family">Family</option>
-              </select>
-              <button type="submit" onclick="addRoom()" class="btn btn-primary">
-                Create
-              </button>
-            </form>
+            <h1 class="display-3 mb-3">Room Listing</h1>
+            <ul id="roomList" class="list-group">
+              
+            </ul>
           </div>
         </div>
       </div>
     </main>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="..." class="rounded me-2" alt="...">
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          Success! Booking created.
+        </div>
+      </div>
+    </div>
+   
+    
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="guestName" class="form-label"
+              >Your name</label
+            >
+            <input class="form-control" id="guestName" />
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label"
+              > Total amount of guests</label
+            >
+            <input class="form-control" type="number" id="guestNum" />
+          </div>
+          <div class="mb-3">
+            <label for="roomRate" class="form-label"
+              >Your email</label
+            >
+            <input class="form-control"  type="text" id="guestEmail" />
+          </div>
+          <div class="mb-3">
+            <label for="roomNum" class="form-label"
+              >Your phone number</label
+            >
+            <input class="form-control"  type="number" id="guestPhone" />
+          </div>
+          <div class="mb-3">
+            <label for="checkinDate" class="form-label">Check in at</label>
+           <input type="date" class="form-control" name="" id="checkinDate">
+          </div>
+          <div class="mb-3">
+            <label for="checkinDate" class="form-label">Check out at</label>
+           <input type="date" class="form-control" name="" id="checkoutDate">
+          </div>
+          <div class="mb-3">
+            <h1 class="display-5" id="roomBooked">Room:</h1>
+            <h1 class="display-5" id="totalPrice">Total price:</h1>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="bookBtn" data-bs-dismiss="modal">Make Booking</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     <footer>
       <!-- place footer here -->
     </footer>

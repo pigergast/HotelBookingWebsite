@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Arena Cam Ranh</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link rel="stylesheet" href="/bootstrap-5.2.3-dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <!-- place navbar here -->
+      <nav class="navbar navbar-expand navbar-light bg-primary">
+        <a class="navbar-brand text-white mx-4">The Princess of Arena Cam Ranh</a>
+        <ul class="nav navbar-nav ms-5">
+          <li class="nav-item">
+            <a
+              class="nav-link text-white"
+              href="Rooms.html"
+              >Room Listing</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Bookings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" style="background-color: darkblue" href="#">Admin</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="container">
+        
+        <div class="row mt-2 justify-content-center align-items-center g-2">
+          <div class="col shadow p-3 mb-5 bg-body rounded">
+            <h1>Create a room</h1>
+            <form>
+              <div class="mb-3">
+                <label for="roomName" class="form-label"
+                  >Room name</label
+                >
+                <input class="form-control" id="roomName" />
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label"
+                  >Room Size</label
+                >
+                <input class="form-control" type="number" id="roomSize" />
+              </div>
+              <div class="mb-3">
+                <label for="roomRate" class="form-label"
+                  >Standard Rate</label
+                >
+                <input class="form-control"  type="number" id="roomRate" />
+              </div>
+              <div class="mb-3">
+                <label for="roomNum" class="form-label"
+                  >Number of rooms available</label
+                >
+                <input class="form-control"  type="number" id="roomNum" />
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label"
+                  >Utilities:</label>
+                <div class="btn-group mx-2" role="group" >
+                    <input type="checkbox" class="btn-check" id="AC" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="AC">AC</label>
+                  
+                    <input type="checkbox" class="btn-check" id="Terrace" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="Terrace">Terrace</label>
+                  
+                    <input type="checkbox" class="btn-check" id="Pool" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="Pool">Pool</label>
+
+                    <input type="checkbox" class="btn-check" id="Gym" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="Gym">Gym</label>
+
+                    <input type="checkbox" class="btn-check" id="Restaurant" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="Restaurant">Restaurant</label>
+
+                    <input type="checkbox" class="btn-check" id="Beach" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="Beach">Beach</label>
+                  </div>
+              </div>
+              <button type="button" onclick="createRoom()" id="submitBtn" class="btn btn-primary">
+                Create
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+    </main>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body">
+            Success! Room created.
+          </div>
+        </div>
+      </div>
+      
+    <footer>
+      <!-- place footer here -->
+    </footer>
+    
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="/bootstrap-5.2.3-dist/js/bootstrap.bundle.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
