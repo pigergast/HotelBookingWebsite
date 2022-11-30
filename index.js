@@ -111,11 +111,9 @@ class Hotel {
     this.ownerPhone = ownerPhone;
   }
   //loop through rooms and console.log the room name and number
-
-
 }
 function displayRooms(hotel) {
-    i = 0;
+  i = 0;
   hotel.roomList.forEach((room) => {
     i++;
     document.getElementById(
@@ -129,18 +127,58 @@ function displayRooms(hotel) {
     } USD</h5> <h5> Rooms:<span class="badge ms-1 bg-primary badge-pill">${
       room.number
     }</span> </h5> <button type="button" id="btn${i}" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"> <h5>Reserve</h5> </button> </li>`;
-});
-setButtons(hotel);
+  });
+  setButtons(hotel);
 }
 
-function setButtons(hotel){
-    let i = 0;
-    hotel.roomList.forEach((room) => {
-        i++;
-        document.getElementById(`btn${i}`).addEventListener("click", function(){
-            console.log(room.name)
+function setButtons(hotel) {
+  let i = 0;
+  hotel.roomList.forEach((room) => {
+    i++;
+    document.getElementById(`btn${i}`).addEventListener("click", function () {
+      document.querySelector("#roomBooked").innerHTML = `Room: ${room.name}`;
+      document.querySelector("#checkinDate").min = new Date()
+        .toISOString()
+        .split("T")[0];
+      let date = new Date();
+      let dateTmp = date;
+      date.setDate(date.getDate() + 1);
+      document.querySelector("#checkoutDate").min = date
+        .toISOString()
+        .split("T")[0];
+      document.querySelector("#checkoutDate").value = date
+        .toISOString()
+        .split("T")[0];
+      document.querySelector("#checkinDate").value = new Date()
+        .toISOString()
+        .split("T")[0];
+      document
+        .querySelector("#checkinDate")
+        .addEventListener("change", function () {
+          document.querySelector("#totalPrice").innerHTML = `${calculatePrice(
+            new Date(document.querySelector("#checkinDate").value),
+            new Date(document.querySelector("#checkoutDate").value),
+            room.rate
+          )} USD`;
+        });
+      document
+        .querySelector("#checkoutDate")
+        .addEventListener("change", function () {
+          document.querySelector("#totalPrice").innerHTML = `${calculatePrice(
+            new Date(document.querySelector("#checkinDate").value),
+            new Date(document.querySelector("#checkoutDate").value),
+            room.rate
+          )} USD`;
         });
     });
+  });
+}
+
+function calculatePrice(checkin, checkout, rate) {
+  let timeDiff = Math.abs(checkout.getTime() - checkin.getTime());
+  let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  console.log(checkout.getTime() - checkin.getTime());
+  return diffDays * rate;
 }
 
 //List every utility in a room
@@ -153,35 +191,49 @@ function listUtility(room) {
 }
 
 function addRoom(hotel) {
-    let name = document.getElementById("roomName").value;
-    let size = document.getElementById("roomSize").value;
-    let rate = document.getElementById("roomRate").value;
-    let number = document.getElementById("roomNum").value;
+  let name = document.getElementById("roomName").value;
+  let size = document.getElementById("roomSize").value;
+  let rate = document.getElementById("roomRate").value;
+  let number = document.getElementById("roomNum").value;
 
-    let utilities = [];
-    if (document.getElementById("AC").checked) {
-      utilities.push("AC");
-    }
-    if (document.getElementById("Terrace").checked) {
-      utilities.push("Terrace");
-    }
-    if (document.getElementById("Pool").checked) {
-      utilities.push("Pool");
-    }
-    if (document.getElementById("Gym").checked) {
-      utilities.push("Gym");
-    }
-    if (document.getElementById("Restaurant").checked) {
-      utilities.push("Restaurant");
-    }
-    if (document.getElementById("Beach").checked) {
-      utilities.push("Beach");
-    }
-    hotel.roomList.push(new Room(name, size, rate, number));
-    hotel.roomList[hotel.roomList.length - 1].utility = utilities;
-    window.localStorage.setItem("hotel", JSON.stringify(hotel));
-    makeToast();
+  let utilities = [];
+  if (document.getElementById("AC").checked) {
+    utilities.push("AC");
   }
+  if (document.getElementById("Terrace").checked) {
+    utilities.push("Terrace");
+  }
+  if (document.getElementById("Pool").checked) {
+    utilities.push("Pool");
+  }
+  if (document.getElementById("Gym").checked) {
+    utilities.push("Gym");
+  }
+  if (document.getElementById("Restaurant").checked) {
+    utilities.push("Restaurant");
+  }
+  if (document.getElementById("Beach").checked) {
+    utilities.push("Beach");
+  }
+  hotel.roomList.push(new Room(name, size, rate, number));
+  hotel.roomList[hotel.roomList.length - 1].utility = utilities;
+  window.localStorage.setItem("hotel", JSON.stringify(hotel));
+  makeToast();
+}
+
+function createRoom() {
+  addRoom(hotel);
+}
+
+function makeToast() {
+  const toastLiveExample = document.getElementById("liveToast");
+  const toast = new bootstrap.Toast(toastLiveExample);
+  toast.show();
+}
+
+function test() {
+  console.log(document.getElementById("date").value);
+}
 
 if (window.localStorage.getItem("hotel") === null) {
   let hotel = new Hotel(
@@ -216,18 +268,3 @@ let hotel = JSON.parse(window.localStorage.getItem("hotel"));
 if (window.location.pathname == "/Rooms.html") {
   displayRooms(hotel);
 }
-
-function createRoom(){
-    addRoom(hotel);
-}
-
-function makeToast(){
-    const toastLiveExample = document.getElementById('liveToast')
-    const toast = new bootstrap.Toast(toastLiveExample)
-    toast.show()  
-}
-
-function test() {
-  console.log(document.getElementById("date").value);
-}
-
