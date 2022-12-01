@@ -19,7 +19,7 @@
       <!-- place navbar here -->
       <nav class="navbar navbar-expand navbar-light bg-primary">
         <a class="navbar-brand text-white mx-4"
-          >The Princess of Arena Cam Ranh</a
+          >The Princess of Arena Cam Ranh Home</a
         >
         <ul class="nav navbar-nav ms-2">
           <li class="nav-item border ms-1">
@@ -125,7 +125,7 @@
                 type="button"
                 onclick="createRoom()"
                 id="submitBtn"
-                class="btn btn-primary"
+                class="btn btn-primary btn-lg"
               >
                 Create
               </button>
@@ -135,35 +135,20 @@
 
         <div class="row mt-2 justify-content-center align-items-center g-2">
           <div class="col shadow p-3 mb-5 bg-body rounded">
-            <h1 class="display-3 mb-3">Set rate plan</h1>
-            <ul id="roomRateList" class="list-group">
-              <li
-                class="list-group-item d-flex justify-content-between align-items-center"
+            <div class="row">
+              <h1 class="display-3 mb-3 col">Modify rooms</h1>
+              <button
+                type="button"
+                id="bulkRateBtn"
+                class="btn btn-success btn-lg col-3 mb-2 me-2"
+                data-bs-toggle="modal"
+                data-bs-target="#bulkModal"
               >
-                <img
-                  class="img-fluid rounded-top"
-                  style="width: 150px"
-                  src="https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/397679942.jpg?k=7b3f5dd6c2f195e3129f361ecb989adf25331fe20ec52954beb2b0c83cf01b89&amp;o=&amp;hp=1"
-                  alt=""
-                />
-                <h5>
-                  Deluxe
-                </h5>
-                <h5>Size: 30 meters</h5>
-                <h5>Standard Rate: 100 USD</h5>
-                <h5>
-                  Rooms:<span class="badge ms-1 bg-info badge-pill">1</span>
-                </h5>
-                <button
-                  type="button"
-                  id="btn1"
-                  class="btn btn-primary btn-lg"
-                  data-bs-toggle="modal"
-                  data-bs-target="#rateModal"
-                >
-                  <h5>Set</h5>
-                </button>
-              </li>
+                <h2>Set bulk rate plan</h2>
+              </button>
+            </div>
+            <ul id="roomRateList" class="list-group">
+             
             </ul>
           </div>
         </div>
@@ -186,7 +171,7 @@
             aria-label="Close"
           ></button>
         </div>
-        <div class="toast-body">Success! Room created.</div>
+        <div class="toast-body">Success!</div>
       </div>
     </div>
 <!-- Modal -->
@@ -203,22 +188,90 @@
             <label for="roomNum" class="form-label"
               >Rate:</label
             >
-            <input class="form-control"  type="number" id="ratePrice" />
+            <input class="form-control"  type="number" id="ratePrice" required />
           </div>
           <div class="mb-3">
             <label for="checkinDate" class="form-label">Rate plan starts at</label>
-           <input type="date" class="form-control" name="" id="checkinRate">
+           <input type="date" class="form-control" name="" id="checkinRate" required>
           </div>
           <div class="mb-3">
             <label for="checkinDate" class="form-label">Rate plan ends at</label>
-           <input type="date" class="form-control" name="" id="checkoutRate">
+           <input type="date" class="form-control" name="" id="checkoutRate" required>
           </div>
           <div class="mb-3"> <h1 class="display-6" >Room: <span id="roomRated"></span></h1></div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="bookRoom()" id="bookBtn" data-bs-dismiss="modal">Make Booking</button>
+        <button type="button" class="btn btn-primary" onclick="createScheduleRate()" id="bookBtn" data-bs-dismiss="modal">Make rate</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="bulkModal" tabindex="-1" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Set a rate plan for all rooms</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="roomNum" class="form-label"
+              >Rate:</label
+            >
+            <input class="form-control"  type="number" id="bulkPrice" required />
+          </div>
+          <div class="mb-3">
+            <label for="checkinDate" class="form-label">Rate plan starts at</label>
+           <input type="date" class="form-control" name="" id="checkinBulk" required>
+          </div>
+          <div class="mb-3">
+            <label for="checkinDate" class="form-label">Rate plan ends at</label>
+           <input type="date" class="form-control" name="" id="checkoutBulk" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="createBulkRate()" id="bookBtn" data-bs-dismiss="modal">Make rate</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update room</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="guestName" class="form-label">Updated Name</label>
+            <input class="form-control" type="text" id="updateName" />
+          </div>
+          <div class="mb-3">
+            <label for="roomRate" class="form-label">Updated Size</label>
+            <input class="form-control" type="number" id="updateSize" />
+          </div>
+          <div class="mb-3">
+            <label for="roomNum" class="form-label">Updated amount of rooms</label>
+            <input class="form-control" type="number" id="updateNumber" />
+          </div>
+          <div class="mb-3">
+            <label for="roomNum" class="form-label">Updated rate</label>
+            <input class="form-control" type="number" id="updateRate" />
+          </div>
+          <h1 class="display-6">For room: <span id="roomUpdated"></span></h1>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="updateRoom()" id="updateBtn" data-bs-dismiss="modal">Update room
+          Booking</button>
       </div>
     </div>
   </div>

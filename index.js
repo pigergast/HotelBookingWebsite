@@ -6,6 +6,7 @@ const pictures = {
 const houseRules = {
   rule1: "No smoking",
   rule2: "No pets",
+  rule3: "No loud music",
 };
 
 const utilities = {
@@ -19,8 +20,9 @@ const utilities = {
 
 class ScheduledRates {
   constructor(firstDate, lastDate, rate) {
-    this.firstDate = Date(firstDate);
-    this.lastDate = Date(lastDate);
+    this.firstDate = firstDate;
+    this.lastDate = lastDate;
+    console.log(this.firstDate + this.lastDate);
     this.rate = rate;
   }
 }
@@ -35,42 +37,9 @@ class Room {
     this.scheduledRates = [];
   }
 
-  addScheduledRate(firstDate, lastDate, rate) {
-    this.scheduledRates.push(new ScheduledRates(firstDate, lastDate, rate));
-  }
 
-  modifyScheduledRate(firstDate, lastDate, rate) {
-    this.scheduledRates.forEach((scheduledRate) => {
-      if (
-        scheduledRate.firstDate === firstDate &&
-        scheduledRate.lastDate === lastDate
-      ) {
-        scheduledRate.rate = rate;
-      }
-    });
-  }
-
-  checkScheduledRate(checkin, checkout) {
-    this.scheduledRates.forEach((scheduledRate) => {
-      if (
-        checkin >= scheduledRate.firstDate &&
-        checkout <= scheduledRate.lastDate
-      ) {
-        return scheduledRate.rate;
-      }
-    });
-    return this.rate;
-  }
-
-  addUtility(utility) {
-    this.utility.push(utility);
-  }
-  modifyRoom(name, size, rate, number) {
-    this.name = name;
-    this.size = size;
-    this.rate = rate;
-    this.number = number;
-  }
+  
+ 
 }
 
 class Booking {
@@ -95,20 +64,13 @@ class Hotel {
     this.ownerPhone = ownerPhone;
     this.bookings = [];
     this.photos = [pictures.featured];
-    this.houseRules = [houseRules.rule1, houseRules.rule2];
+    this.houseRules = [houseRules.rule1, houseRules.rule2, houseRules.rule3];
     this.roomList = [
+      new Room("One-Bedroom Apartment", 50, 150, 3),
       new Room("Deluxe", 30, 100, 1),
       new Room("Superior", 40, 150, 2),
       new Room("Luxury", 50, 200, 3),
     ];
-  }
-  modifyHotel(name, address, coordinate, ownerName, ownerEmail, ownerPhone) {
-    this.name = name;
-    this.address = address;
-    this.coordinate = coordinate;
-    this.ownerName = ownerName;
-    this.ownerEmail = ownerEmail;
-    this.ownerPhone = ownerPhone;
   }
 }
 function displayRooms(hotel) {
@@ -145,8 +107,8 @@ function displayRates(hotel) {
     <h5>
       ${room.name}
     </h5>
-    <h5>Size: ${room.size}</h5>
-    <h5>Standard Rate: ${room.rate}</h5>
+    <h5>Size: ${room.size} meters</h5>
+    <h5>Standard Rate: ${room.rate} USD</h5>
     <h5>
       Rooms:<span class="badge ms-1 bg-info badge-pill">${room.number}</span>
     </h5>
@@ -157,12 +119,44 @@ function displayRates(hotel) {
       data-bs-toggle="modal"
       data-bs-target="#rateModal"
     >
-      <h5>Set</h5>
+      <h5>Set individual rate</h5>
     </button>
+    <button
+              type="button"
+              id="btnDelete${i}"
+              class="btn btn-danger btn-lg"
+             
+            >
+              <h5>Delete</h5>
+            </button>
+            <button
+            type="button"
+            id="btnUpdate${i}"
+            class="btn btn-warning btn-lg"
+            data-bs-toggle="modal"
+            data-bs-target="#updateModal"
+          >
+            <h5>Update</h5>
+          </button>
   </li>`;
   });
   setRateButtons(hotel);
 }
+
+function addScheduleRateToHotelRoom(hotel, scheduledRate, roomName) {
+    hotel.roomList.forEach((room) => {
+        if (room.name == roomName) {
+            room.scheduledRates.push(scheduledRate);
+        }
+    });
+}
+
+function addScheduleRateToAllRooms(hotel, scheduledRate){
+  hotel.roomList.forEach((room) => {
+    room.scheduledRates.push(scheduledRate);
+  });
+}
+
 
 function setRateButtons(hotel) {
   let i = 0;
@@ -171,8 +165,63 @@ function setRateButtons(hotel) {
     document.getElementById(`btnRate${i}`).addEventListener("click", function () {
       document.querySelector("#roomRated").innerHTML = `${room.name}`;
     });
+    document.getElementById(`btnDelete${i}`).addEventListener("click", function () {
+      deleteRoomFromHotel(room.name, hotel);
+    });
+    document.getElementById(`btnUpdate${i}`).addEventListener("click", function () {
+      document.querySelector("#roomUpdated").innerHTML = `${room.name}`;
+    });
   });
 }
+
+function setBookingButtons(hotel){
+  let i = 0;
+  hotel.bookings.forEach((booking) => {
+    i++;
+    document.getElementById(`btnCancel${i}`).addEventListener("click", function () {
+      deleteBookingFromHotel(booking.Name, booking.Room, hotel);
+    });
+  });
+}
+
+function deleteBookingFromHotel(guestName, roomName, hotel)
+{
+  hotel.bookings.forEach((booking) => {
+    if (booking.Name == guestName && booking.Room == roomName) {
+      hotel.bookings.splice(hotel.bookings.indexOf(booking), 1);
+    }
+  });
+  window.localStorage.setItem("hotel", JSON.stringify(hotel));
+  window.location.reload();
+}
+
+
+
+function deleteRoomFromHotel(roomName, hotel)
+{
+      hotel.roomList.forEach((room) => {
+    if (room.name == roomName) {
+        hotel.roomList.pop(room);
+    }
+    window.localStorage.setItem("hotel", JSON.stringify(hotel));
+    window.location.reload();
+});
+}
+  
+function updateRoom(){
+    let name = document.querySelector("#roomUpdated").innerHTML;
+    hotel.roomList.forEach((room) => {
+    if (room.name == name) {
+        room.name = document.getElementById("updateName").value;
+        room.size = document.getElementById("updateSize").value;
+        room.rate = document.getElementById("updateRate").value;
+        room.number = document.getElementById("updateNumber").value;
+    }
+    window.localStorage.setItem("hotel", JSON.stringify(hotel));
+    window.location.reload();
+});
+}
+
 
 function addBooking(hotel)
 {
@@ -214,7 +263,7 @@ function setButtons(hotel) {
         document.querySelector("#totalPrice").innerHTML = `${calculatePrice(
           new Date(document.querySelector("#checkinDate").value),
           new Date(document.querySelector("#checkoutDate").value),
-          room.rate
+          checkScheduledRate(room, document.querySelector("#checkinDate").value, document.querySelector("#checkoutDate").value)
         )}`;
       document
         .querySelector("#checkinDate")
@@ -222,7 +271,7 @@ function setButtons(hotel) {
           document.querySelector("#totalPrice").innerHTML = `${calculatePrice(
             new Date(document.querySelector("#checkinDate").value),
             new Date(document.querySelector("#checkoutDate").value),
-            room.rate
+            checkScheduledRate(room, document.querySelector("#checkinDate").value, document.querySelector("#checkoutDate").value)
           )}`;
         });
       document
@@ -231,7 +280,7 @@ function setButtons(hotel) {
           document.querySelector("#totalPrice").innerHTML = `${calculatePrice(
             new Date(document.querySelector("#checkinDate").value),
             new Date(document.querySelector("#checkoutDate").value),
-            room.rate
+            checkScheduledRate(room, document.querySelector("#checkinDate").value, document.querySelector("#checkoutDate").value)
           )}`;
         });
     });
@@ -289,7 +338,7 @@ function listBookings(hotel){
   let i = 0;
   hotel.bookings.forEach((booking) => {
     i++;
-    document.querySelector("#bookingList").innerHTML += `<li class="list-group-item list-group-item"><div class="d-flex w-100 justify-content-between"><h5 class="mb-1">Duration: ${(new Date(booking.CheckIn)).toISOString().split("T")[0]} to ${(new Date(booking.CheckOut)).toISOString().split("T")[0]}</h5></div><h6 class="mb-1">Room: ${booking.Room}</h6><h6 class="mb-1">Guest Name: ${booking.Name}</h6><h6 class="mb-1">Guest Phone: ${booking.Phone}</h6><h6 class="mb-1">Guest Email: ${booking.Email}</h6><h6 class="mb-1">Total price: ${booking.Price} USD</h6></li>`;
+    document.querySelector("#bookingList").innerHTML += `<li class="list-group-item list-group-item"><div class="d-flex w-100 justify-content-between"><h5 class="mb-1">Duration: ${(new Date(booking.CheckIn)).toISOString().split("T")[0]} to ${(new Date(booking.CheckOut)).toISOString().split("T")[0]}</h5></div><h6 class="mb-1">Room: ${booking.Room}</h6><h6 class="mb-1">Guest Name: ${booking.Name}</h6><h6 class="mb-1">Guest Phone: ${booking.Phone}</h6><h6 class="mb-1">Guest Email: ${booking.Email}</h6><h6 class="mb-1">Total price: ${booking.Price} USD</h6><button type="button" id="btnCancel${i}" class="btn btn-danger btn-lg align-self-baseline">Cancel</button></li>`;
   });
 }
 
@@ -300,54 +349,98 @@ function bookRoom(){
 
 function createRoom() {
   addRoom(hotel);
+  window.location.reload();
 }
 
+function createScheduleRate()
+{
+    let rate = document.getElementById("ratePrice").value;
+    let checkin = document.getElementById("checkinRate").value;
+    let checkout = document.getElementById("checkoutRate").value;
+    let rName = document.getElementById("roomRated").innerHTML;
+    console.log(checkin + checkout)
+    let sRate = new ScheduledRates(checkin, checkout, rate);
+    addScheduleRateToHotelRoom(hotel, sRate, rName);
+    window.localStorage.setItem("hotel", JSON.stringify(hotel));
+    makeToast();
+}
+
+function createBulkRate()
+{
+    let rate = document.getElementById("bulkPrice").value;
+    let checkin = document.getElementById("checkinBulk").value;
+    let checkout = document.getElementById("checkoutBulk").value;
+    let sRate = new ScheduledRates(checkin, checkout, rate);
+    addScheduleRateToAllRooms(hotel, sRate);
+    window.localStorage.setItem("hotel", JSON.stringify(hotel));
+    makeToast();
+}
+
+
+function checkScheduledRate(room, checkinDate, checkoutDate)
+{
+    let checkin = new Date(checkinDate);
+    let checkout = new Date(checkoutDate);
+    let rate = room.rate;
+    document.querySelector("#rateType").innerHTML = `Standard Rate of ${rate} USD Applied`;
+    room.scheduledRates.forEach((sRate) => {
+      console.log(new Date(sRate.firstDate) + new Date(sRate.lastDate))
+
+        if(checkin >= new Date(sRate.firstDate) && checkout <= new Date(sRate.lastDate))
+        {
+            rate = sRate.rate;
+            document.querySelector("#rateType").innerHTML = `Scheduled Rate of ${rate} USD Applied`;
+        }
+    });
+    console.log(rate)
+    return rate;
+}
 function makeToast() {
   const toastLiveExample = document.getElementById("liveToast");
   const toast = new bootstrap.Toast(toastLiveExample);
   toast.show();
 }
 
-function test() {
-  console.log(document.getElementById("date").value);
+function displayRules(hotel){
+  let i = 0;
+  hotel.houseRules.forEach((rule) => {
+    i++;
+    document.querySelector("#houseRules").innerHTML += `<li class="list-group-item list-group-item"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1">Rule #${i}</h6></div><h5 class="mb-1">${rule}</h5></li>`;
+  });
+}
+//If user's first time, fetch data from API
+async function getJson() {
+  const response = await fetch('https://api.npoint.io/3c973db6392d78fbc5f2');
+  const data = await response.json();
+  let h = data.hotel;
+  window.localStorage.setItem("hotel", JSON.stringify(h));
+  window.location.reload();
 }
 
-if (window.localStorage.getItem("hotel") === null) {
-  let hotel = new Hotel(
-    "The Princess of Arena Cam Ranh Home",
-    "Cam Nghĩa, Cam Ranh, Khánh Hòa, Vietnam",
-    "12.02630367601079, 109.21449190530254",
-    "CÔNG TY CỔ PHẦN TRẦN THÁI CAM RANH",
-    "rsvn.ams@arenams.vn",
-    "02583968888"
-  );
-  hotel.roomList[1].utility.push(
-    utilities.AC,
-    utilities.Pool,
-    utilities.Restaurant,
-    utilities.Gym
-  );
-  hotel.roomList[2].utility.push(
-    utilities.AC,
-    utilities.Pool,
-    utilities.Restaurant,
-    utilities.Beach
-  );
-  hotel.roomList[0].utility.push(
-    utilities.AC,
-    utilities.Pool,
-    utilities.Restaurant
-  );
-  window.localStorage.setItem("hotel", JSON.stringify(hotel));
+if(window.localStorage.getItem("hotel") === null)
+{
+getJson()
 }
-console.log(window.localStorage.getItem("hotel"));
 let hotel = JSON.parse(window.localStorage.getItem("hotel"));
 if(window.location.pathname == "/Bookings.html"){
   listBookings(hotel);
+  setBookingButtons(hotel);
 }
 if (window.location.pathname == "/Rooms.html") {
   displayRooms(hotel);
+  displayRules(hotel);
 }
 if(window.location.pathname == "/Admin.html"){
   displayRates(hotel);
 }
+// if(window.location.pathname == "/Bookings.html"){
+//   listBookings(hotel);
+//   setBookingButtons(hotel);
+// }
+// if (window.location.pathname == "/Rooms.html") {
+//   displayRooms(hotel);
+//   displayRules(hotel);
+// }
+// if(window.location.pathname == "/Admin.html"){
+//   displayRates(hotel);
+// }

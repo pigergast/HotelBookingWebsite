@@ -1,143 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Arena Cam Ranh</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
 
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link rel="stylesheet" href="/bootstrap-5.2.3-dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
+<head>
+  <title>Arena Cam Ranh</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-  <body style="background-color: #f6d7b0; background-image: var(--bs-gradient);">
-    <header>
-      <!-- place navbar here -->
-      <nav class="navbar navbar-expand navbar-light bg-primary">
-        <a class="navbar-brand text-white mx-4"
-          >The Princess of Arena Cam Ranh</a
-        >
-        <ul class="nav navbar-nav ms-2">
-          <li class="nav-item nav-item border ms-1 roun">
-            <a
-              class="nav-link text-white"
-              style="background-color: darkblue"
-              href="#"
-              >Room Listing</a
-            >
-          </li>
-          <li class="nav-item border ms-1">
-            <a class="nav-link text-white" href="Bookings.html">View Bookings</a>
-          </li>
-          <li class="nav-item border ms-1">
-            <a class="nav-link text-white" href="Admin.html">Admin</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <div class="container">
-        <div class="row mt-2 justify-content-center align-items-center g-2">
-          <div class="col shadow p-3 mb-5 bg-body rounded">
-            <h1 class="display-1">
-              Welcome to
-              <span class="text-primary"> <strong>Princess of Arena Cam Ranh Home</strong></span>
-            </h1>
-          </div>
-          <div class="col shadow p-3 mb-5 bg-body rounded ms-2">
-            <img
-              src="https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/395735069.jpg?k=79b8f3f9431fa410acf3a6337445aa8db9b026efc5e06dfe6fbf2fa375e6bd72&o=&hp=1"
-              class="img-fluid rounded-top"
-              alt=""
-            />
-          </div>
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link rel="stylesheet" href="/bootstrap-5.2.3-dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body style="background-color: #f6d7b0; background-image: var(--bs-gradient);">
+  <header>
+    <!-- place navbar here -->
+    <nav class="navbar navbar-expand navbar-light bg-primary">
+      <a class="navbar-brand text-white mx-4">The Princess of Arena Cam Ranh Home</a>
+      <ul class="nav navbar-nav ms-2">
+        <li class="nav-item nav-item border ms-1 roun">
+          <a class="nav-link text-white" style="background-color: darkblue" href="#">Room Listing</a>
+        </li>
+        <li class="nav-item border ms-1">
+          <a class="nav-link text-white" href="Bookings.html">View Bookings</a>
+        </li>
+        <li class="nav-item border ms-1">
+          <a class="nav-link text-white" href="Admin.html">Admin</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="container">
+      <div class="row mt-2 justify-content-center align-items-center g-2">
+        <div class="col shadow p-3 mb-5 bg-body rounded">
+          <h1 class="display-1">
+            Welcome to
+            <span class="text-primary"> <strong>Princess of Arena Cam Ranh Home</strong></span>
+          </h1>
         </div>
-        <div class="row mt-2 justify-content-center align-items-center g-2">
-          <div class="col shadow p-3 mb-5 bg-body rounded">
-            <h1 class="display-3 mb-3">Room Listing</h1>
-            <ul id="roomList" class="list-group">
-              
+        <div class="col shadow p-3 mb-5 bg-body rounded ms-2">
+          <img
+            src="https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/395735069.jpg?k=79b8f3f9431fa410acf3a6337445aa8db9b026efc5e06dfe6fbf2fa375e6bd72&o=&hp=1"
+            class="img-fluid rounded-top" alt="" />
+        </div>
+      </div>
+      <div class="row mt-2 justify-content-center align-items-center g-2">
+        <div class="col shadow p-3 mb-5 bg-body rounded">
+          <div class="row">
+            <h1 class="display-1 mb-3 col">Room Listing</h1>
+          </div>
+          
+
+          <ul id="roomList" class="list-group">
+
+          </ul>
+          <div class="col">
+            <h1 class="display-6 mb-3 text-primary"><strong>House Rules:</strong></h1>
+            <ul class="list-group list-group-flush mb-3 border border-primary rounded" id="houseRules">   
             </ul>
           </div>
         </div>
       </div>
-    </main>
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-      <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-          <img src="..." class="rounded me-2" alt="...">
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-          Success! Booking created.
-        </div>
-      </div>
     </div>
-   
-    
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Book a room</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </main>
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="guestName" class="form-label"
-              >Your name</label
-            >
-            <input class="form-control" id="guestName" />
-          </div>
-          <div class="mb-3">
-            <label for="roomRate" class="form-label"
-              >Your email</label
-            >
-            <input class="form-control"  type="text" id="guestEmail" />
-          </div>
-          <div class="mb-3">
-            <label for="roomNum" class="form-label"
-              >Your phone number</label
-            >
-            <input class="form-control"  type="number" id="guestPhone" />
-          </div>
-          <div class="mb-3">
-            <label for="checkinDate" class="form-label">Check in at</label>
-           <input type="date" class="form-control" name="" id="checkinDate">
-          </div>
-          <div class="mb-3">
-            <label for="checkinDate" class="form-label">Check out at</label>
-           <input type="date" class="form-control" name="" id="checkoutDate">
-          </div>
-          <div class="mb-3">
-            <h1 class="display-6" >Room: <span id="roomBooked"></span></h1>
-            <h1 class="display-6" >Total price: <span id="totalPrice"></span> <span>USD</span></h1>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="bookRoom()" id="bookBtn" data-bs-dismiss="modal">Make Booking</button>
+      <div class="toast-body">
+        Success! Booking created.
       </div>
     </div>
   </div>
-</div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Book a room</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="guestName" class="form-label">Your name</label>
+              <input class="form-control" id="guestName" />
+            </div>
+            <div class="mb-3">
+              <label for="roomRate" class="form-label">Your email</label>
+              <input class="form-control" type="text" id="guestEmail" />
+            </div>
+            <div class="mb-3">
+              <label for="roomNum" class="form-label">Your phone number</label>
+              <input class="form-control" type="number" id="guestPhone" />
+            </div>
+            <div class="mb-3">
+              <label for="checkinDate" class="form-label">Check in at</label>
+              <input type="date" class="form-control" name="" id="checkinDate">
+            </div>
+            <div class="mb-3">
+              <label for="checkinDate" class="form-label">Check out at</label>
+              <input type="date" class="form-control" name="" id="checkoutDate">
+            </div>
+            <div class="mb-3">
+              <h1 class="display-6">Room: <span id="roomBooked"></span></h1>
+              <h1 class="display-6">Total price: <span id="totalPrice"></span> <span>USD</span></h1>
+              <div class="mb-3">
+                <h1 class="h3 text-primary" id="rateType">Standard rate applied</h1>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="bookRoom()" id="bookBtn" data-bs-dismiss="modal">Make
+            Booking</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <footer class="d-flex  flex-wrap justify-content-between align-items-center py-3 border-top bg-white">
-    <div class="col-md-4 d-inline align-items-center">
-      <span class="ms-2 mb-3 mb-md-0 text-muted">CÔNG TY CỔ PHẦN TRẦN THÁI CAM RANH | 02583968888 | rsvn.ams@arenams.vn</span>
+    <div class="col-md-4 d-inline align-items-center container-fluid">
+      <span class="ms-2 mb-3 mb-md-0 text-muted" id="contactInfo">CÔNG TY CỔ PHẦN TRẦN THÁI CAM RANH | 02583968888 |
+        rsvn.ams@arenams.vn</span>
     </div>
 
   </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="/bootstrap-5.2.3-dist/js/bootstrap.bundle.js"></script>
-    <script src="index.js"></script>
-  </body>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="/bootstrap-5.2.3-dist/js/bootstrap.bundle.js"></script>
+  <script src="index.js"></script>
+</body>
+
 </html>
